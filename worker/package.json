@@ -1,0 +1,16 @@
+{
+  "name": "pokemon-card-pricer-worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare Worker backend for the Pokemon Card Pricer app. Identifies a card from a photo (Claude vision) and looks up loose + graded prices.",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "latest"
+  }
+}

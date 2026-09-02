@@ -1,0 +1,20 @@
+name = "pokemon-card-pricer-api"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Vars that are safe to keep in plain text go here.
+# Secrets (API keys) are NOT set here -- set them with `wrangler secret put <NAME>`.
+[vars]
+# Which model to use for card identification. claude-haiku-4-5-20251001 is fast and cheap,
+# which is what you want for a "scan one card at a time" tool. You can bump this to a
+# stronger model (e.g. claude-sonnet-5) if identification accuracy is a problem.
+ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
+
+# Set this to your GitHub Pages URL once you know it (e.g. "https://yourname.github.io")
+# to lock the API down to only your site. Leave as "*" while you're setting things up.
+ALLOWED_ORIGIN = "*"
+
+# Secrets to set before deploying (see README):
+#   wrangler secret put ANTHROPIC_API_KEY
+#   wrangler secret put POKEMONPRICETRACKER_API_KEY

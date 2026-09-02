@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokémon Card Pricer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <span class="logo-dot"></span>
+      <h1>Pokémon Card Pricer</h1>
+    </div>
+    <p class="tagline">Upload a photo of a card. Get the loose and graded price.</p>
+  </header>
+
+  <main class="wrap">
+    <!-- STEP 1: Upload -->
+    <section id="uploadSection" class="panel">
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="fileInput" accept="image/*" hidden />
+        <div class="dropzone-content">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 16V4M12 4l-4 4M12 4l4 4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p><strong>Drop a screenshot</strong> or click to choose a file</p>
+          <p class="hint">Works best with a clear, well-lit photo of the front of the card</p>
+        </div>
+      </div>
+
+      <div id="previewWrap" class="preview-wrap hidden">
+        <img id="previewImg" alt="Selected card preview" />
+        <div class="preview-actions">
+          <button id="identifyBtn" class="btn btn-primary">Identify Card</button>
+          <button id="clearBtn" class="btn btn-ghost">Choose different image</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2: Candidates -->
+    <section id="candidatesSection" class="panel hidden">
+      <h2>Which card is this?</h2>
+      <p id="aiNotes" class="ai-notes hidden"></p>
+      <div id="candidatesGrid" class="candidates-grid"></div>
+
+      <div class="manual-search">
+        <button id="toggleManualSearch" class="btn btn-ghost btn-small">Not seeing it? Search by name</button>
+        <div id="manualSearchForm" class="manual-search-form hidden">
+          <input type="text" id="manualQuery" placeholder="Card name, e.g. Charizard" />
+          <input type="text" id="manualNumber" placeholder="Number (optional), e.g. 4/102" />
+          <button id="manualSearchBtn" class="btn btn-secondary">Search</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3: Price results -->
+    <section id="resultsSection" class="panel hidden">
+      <button id="backBtn" class="btn btn-ghost btn-small">&larr; Start over</button>
+      <div class="result-card">
+        <img id="resultImg" class="result-img" alt="" />
+        <div class="result-meta">
+          <h2 id="resultName"></h2>
+          <p id="resultSet" class="result-sub"></p>
+        </div>
+      </div>
+
+      <div class="price-columns">
+        <div class="price-box">
+          <h3>Loose / Ungraded</h3>
+          <div id="looseBig" class="price-big">—</div>
+          <table id="looseTable" class="price-table"></table>
+          <p id="looseSourceNote" class="source-note"></p>
+        </div>
+
+        <div class="price-box">
+          <h3>Graded (PSA)</h3>
+          <table id="gradedTable" class="price-table"></table>
+          <p id="gradedSourceNote" class="source-note"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Status / errors -->
+    <div id="statusBar" class="status-bar hidden"></div>
+  </main>
+
+  <footer class="footer">
+    <p>Card identification via Claude vision · Prices via the Pokémon TCG API and PokemonPriceTracker.com</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
