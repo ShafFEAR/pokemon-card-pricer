@@ -77,7 +77,7 @@
       return;
     }
     const base64 = await fileToBase64(file);
-    selectedFile = { base64, mediaType: file.type || "image/png" };
+    selectedFile = { image: base64, mediaType: file.type || "image/png" };
     previewImg.src = `data:${selectedFile.mediaType};base64,${base64}`;
     previewWrap.classList.remove("hidden");
     dropzone.classList.add("hidden");
